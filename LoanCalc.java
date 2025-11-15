@@ -70,7 +70,7 @@ public class LoanCalc {
 		double mid = (h + lo)/2.0;
 		double check = endBalance(loan, rate, n, mid);
 		double checkL = endBalance(loan, rate, n, lo);
-		iterationCounter = 0;
+		iterationCounter = 1;
 		while((h - lo) > epsilon){
 			check = endBalance(loan, rate, n, mid);
 			checkL = endBalance(loan, rate, n, lo);
