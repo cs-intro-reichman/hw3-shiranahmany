@@ -103,6 +103,9 @@ public class Algebra {
 		int n1 = 2;
 		int toRoot = x;
 		int res = 0;
+		if(toRoot == 0 || toRoot < 0){
+			return 0;
+		} 
 		while(res < toRoot){
 			res = pow(n1, 2);
 			n1++;

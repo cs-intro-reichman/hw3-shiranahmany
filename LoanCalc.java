@@ -49,7 +49,7 @@ public class LoanCalc {
 		// Replace the following statement with your code
 		double g = (loan / (double)(n));
 		double checkPayment = endBalance(loan, rate, n, g);
-		iterationCounter = 1;
+		iterationCounter = 0;
 		while(checkPayment > 0){
 			g = g + epsilon;
 			checkPayment = endBalance(loan, rate, n, g);
