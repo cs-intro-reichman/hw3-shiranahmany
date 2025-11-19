@@ -39,8 +39,14 @@ public class Algebra {
 		// Replace the following statement with your code
 		int n = x1;
 		int times = x2;
-		for(int i = 0 ; i < times ; i++){
-			n--;
+		if(times < 0){
+			for(int i = 0 ; i < times ; i++) {
+				n++;
+			}
+		} else {
+			for(int i = 0 ; i < times ; i++){
+				n--;
+			}
 		}
 		return n;
 	}
@@ -49,11 +55,17 @@ public class Algebra {
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
 		int n = x1;
-		int n2 = x1;
 		int time = x2;
+		boolean neg = false;
+		if(x1 < 0 || x2 <0) neg = !neg;
+		if(x1 == 0 || x2 == 0) return 0;
+		if(x1 < 0) n = minus(0, x1);
+		if(x2 < 0) time = minus(0, x2);
+		int n2 = n;
 		for(int i = 1 ; i < time ; i++){
 			n = plus(n, n2);
 		}
+		if(neg) n = minus(0, n);
 		return n;
 	}
 
@@ -76,6 +88,17 @@ public class Algebra {
 		int n1 = x1;
 		int n2 = x2;
 		int calc = 0;
+		boolean neg = false;
+		if(x1 == x2) return 1;
+		if(x2 == 1) return x1;
+		if(x1 < 0){
+			neg = !neg;
+			n1 = minus(0, n1);
+		}
+		if(x2 < 0){
+			neg = !neg;
+			n2 = minus(0, n2);
+		}
 		while(n1 > 0){
 			n1 = minus(n1, n2);
 			calc ++;
