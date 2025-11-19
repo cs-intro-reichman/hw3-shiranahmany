@@ -25,11 +25,15 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
 		int n = x1;
-		int times = x2;
-		for(int i = 0 ; i < times ; i++){
-			n++;
+		if(x2 >= 0){
+			for(int i = 0 ; i < x2 ; i++) {
+				n++;
+			}
+		} else {
+			for(int i = 0 ; i < (-1 * x2) ; i++){
+				n--;
+			}
 		}
 		return n;
 	}
@@ -38,13 +42,12 @@ public class Algebra {
 	public static int minus(int x1, int x2) {
 		// Replace the following statement with your code
 		int n = x1;
-		int times = x2;
-		if(times < 0){
-			for(int i = 0 ; i < times ; i++) {
+		if(x2 < 0){
+			for(int i = 0 ; i < (-1 * x2) ; i++) {
 				n++;
 			}
 		} else {
-			for(int i = 0 ; i < times ; i++){
+			for(int i = 0 ; i < x2 ; i++){
 				n--;
 			}
 		}
