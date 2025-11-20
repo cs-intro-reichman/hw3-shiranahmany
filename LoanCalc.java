@@ -15,8 +15,9 @@ public class LoanCalc {
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
 		// Computes the periodical payment using brute force search
+		//System.out.println((int)endBalance(loan, rate, n,  10000));
 		System.out.print("\nPeriodical payment, using brute force: ");
-		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
+		System.out.println((int)bruteForceSolver(loan, rate, n, epsilon));
 		System.out.println("number of iterations: " + iterationCounter);
 
 		// Computes the periodical payment using bisection search
@@ -28,8 +29,15 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+		//double endPay = loan * (1+ (rate / 100));
+		double calcLoan = loan;
+		for(int i = 0; i < n; i++){
+			calcLoan = calcLoan - payment;
+			calcLoan = calcLoan * (1 + (rate / 100));
+			//System.out.println(calcLoan);
+		}
+
+		return calcLoan;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -39,7 +47,16 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		// Replace the following statement with your code
-		return 0;
+		double g = (loan / (double)(n));
+		double checkPayment = endBalance(loan, rate, n, g);
+		iterationCounter = 0;
+		while(checkPayment > 0){
+			g = g + epsilon;
+			checkPayment = endBalance(loan, rate, n, g);
+			iterationCounter++;
+		}
+		
+		return g;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -48,7 +65,23 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
+        double h = loan/2.0;
+		double lo = loan/(double)(n*2);
+		double mid = (h + lo)/2.0;
+		double check = endBalance(loan, rate, n, mid);
+		double checkL = endBalance(loan, rate, n, lo);
+		iterationCounter = 1;
+		while((h - lo) > epsilon){
+			check = endBalance(loan, rate, n, mid);
+			checkL = endBalance(loan, rate, n, lo);
+			if ((check * checkL) > 0) {
+				lo = mid;
+			} else {
+				h = mid;
+			}
+			mid = (h + lo)/2.0;
+			iterationCounter++;
+		}
+		return mid;
     }
 }
