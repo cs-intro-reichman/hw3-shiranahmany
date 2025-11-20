@@ -60,7 +60,8 @@ public class Algebra {
 		int n = x1;
 		int time = x2;
 		boolean neg = false;
-		if(x1 < 0 || x2 <0) neg = !neg;
+		if(x1 < 0) neg = !neg;
+		if(x2 < 0) neg = !neg;
 		if(x1 == 0 || x2 == 0) return 0;
 		if(x1 < 0) n = minus(0, x1);
 		if(x2 < 0) time = minus(0, x2);
@@ -78,7 +79,8 @@ public class Algebra {
 		int n1 = x;
 		int n2 = x;
 		int calc = n;
-		//if(calc < 0) { }
+		if(n == 0) return 1;
+
 		for(int i = 1 ; i < calc ; i++){
 			n1 = times(n1, n2);
 		}
@@ -109,6 +111,7 @@ public class Algebra {
 		if(n1 < 0){
 			calc--;
 		}
+		if(neg) calc = minus(0, calc);
 		return calc;
 	}
 
